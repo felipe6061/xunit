@@ -1,4 +1,5 @@
 using Xunit;
+using Xunit.Sdk;
 
 namespace atividade_imc_xunit
 {
@@ -13,16 +14,16 @@ namespace atividade_imc_xunit
             i.altura = 1.60;
             i.Calcular_IMC();
 
-            Assert.Equal(imc_previsto, i.imc);
+            Assert.AreEqual(imc_previsto, i.imc);
         }
 
-        [Theory]
-        [InlineData("Abaixo do peso")]
-        [InlineData("Peso normal")]
-        [InlineData("Sobrepeso")]
-        [InlineData("Obesidade Grau I")]
-        [InlineData("Obesidade Grau II")]
-        [InlineData("Obesidade Grau III")]
+        [DataTestMethod]
+        [DataRow("Abaixo do peso")]
+        [DataRow("Peso normal")]
+        [DataRow("Sobrepeso")]
+        [DataRow("Obesidade Grau I")]
+        [DataRow("Obesidade Grau II")]
+        [DataRow("Obesidade Grau III")]
         public void Teste_Categoria_IMC(string cat)
         {
             IMC i = new IMC();
@@ -30,8 +31,7 @@ namespace atividade_imc_xunit
             i.altura = 1.60;
             i.Calcular_IMC();
             i.Classificar_IMC();
-
-            Assert.Equal(i.categoria, cat);
+            Assert.AreEqual(i.categoria, cat);
         }
     }
 }
